@@ -7,7 +7,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "user_table")
-public class User {
+public class MyUser {
 
 
     @Id
@@ -26,10 +26,10 @@ public class User {
     @NotNull
     private String password;
 
-    public User() {
+    public MyUser() {
     }
 
-    public User(@NotNull String firstName, @NotNull String lastName, @NotNull String login, @NotNull String password) {
+    public MyUser(@NotNull String firstName, @NotNull String lastName, @NotNull String login, @NotNull String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;
@@ -80,7 +80,7 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
+        MyUser user = (MyUser) o;
         return Objects.equals(id, user.id) &&
                 Objects.equals(firstName, user.firstName) &&
                 Objects.equals(lastName, user.lastName) &&

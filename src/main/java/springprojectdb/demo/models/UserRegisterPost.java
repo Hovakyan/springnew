@@ -4,9 +4,6 @@ import java.util.Objects;
 
 public class UserRegisterPost {
 
-
-
-
     private String firstName;
     private String lastName;
     private String login;

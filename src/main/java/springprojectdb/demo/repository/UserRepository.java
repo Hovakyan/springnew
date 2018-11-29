@@ -1,22 +1,10 @@
 package springprojectdb.demo.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import springprojectdb.demo.models.User;
+import springprojectdb.demo.models.MyUser;
 
-import java.util.List;
-import java.util.Optional;
-
-public interface UserRepository extends JpaRepository<User, Integer> {
-
-@Override
-    User saveAndFlush(User user);
-
-User getUserByLogin(User user);
-
-Optional<User> findByLogin(String login);
-Optional<User> findByLoginAndPassword(String login,String password);
-
-List<User> findAll();
-
-
+public interface UserRepository extends JpaRepository<MyUser, Integer> {
+    MyUser findByFirstNameAndLastName(String firstName, String lastName);
+    MyUser findByLogin(String login);
+    MyUser findByLoginAndPassword(String login, String password);
 }

@@ -11,6 +11,7 @@ public interface UserService {
     MyUser get(Integer id);
 
     MyUser save(MyUser user);
+
     MyUser saveAndFlush(MyUser user);
 
 

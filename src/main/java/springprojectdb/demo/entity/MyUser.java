@@ -56,20 +56,23 @@ public class MyUser {
 
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<MyUserofficers> officers;
+    private    List<MyUserofficers> officerslist;
 
-    public void setofficers(List<MyUserofficers> officers) {
-        this.officers = officers;
+    public String getCompany_Previous_names() {
+        return company_Previous_names;
     }
 
-
-
-
-
-    public List<MyUserofficers> getofficers() {
-        return officers;
+    public void setCompany_Previous_names(String company_Previous_names) {
+        this.company_Previous_names = company_Previous_names;
     }
 
+    public List<MyUserofficers> getOfficerslist() {
+        return officerslist;
+    }
+
+    public void setOfficerslist(List<MyUserofficers> officerslist) {
+        this.officerslist = officerslist;
+    }
 
     public Integer getId() {
         return id;
@@ -84,7 +87,8 @@ public class MyUser {
     }
 
     public  void setCompanyName(String companyName) {
-        this.companyName = companyName;
+
+            this.companyName = companyName;
     }
 
     public String getCompany_ID() {

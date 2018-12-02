@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-public class Officers extends MyUserofficers {
+public class Officers  {
 
 
  public static void officerBackup(String kay , UserService userService) throws IOException, IOException {
@@ -34,14 +34,12 @@ public class Officers extends MyUserofficers {
         } catch (Error | Exception e) {
 
         }
-     final MyUser myUser = new MyUser();
-     final MyUserofficers myUserofficers = new MyUserofficers();
 
+      final   MyUser myUser = new MyUser();
 
         for (int i = 1; i <= count; i++) {
-            MyUserofficers officers = new MyUserofficers();
-//            of.add(officers);
 
+            MyUserofficers officers = new MyUserofficers();
 
             try {
                 Element name = doc.getElementById("officer-name-" + i);
@@ -94,8 +92,9 @@ public class Officers extends MyUserofficers {
 
             }
 
-            myUser.setofficers(Lists.newArrayList(myUserofficers));
-userService.saveAndFlush(myUser);
+          myUser.setOfficerslist(Lists.newArrayList(officers));
+            userService.save(myUser);
         }
-    }
+
+ }
 }

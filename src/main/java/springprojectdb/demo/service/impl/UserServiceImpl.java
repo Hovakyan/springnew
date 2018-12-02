@@ -3,7 +3,6 @@ package springprojectdb.demo.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import springprojectdb.demo.entity.MyUser;
-import springprojectdb.demo.entity.MyUserofficers;
 import springprojectdb.demo.repository.UserRepository;
 import springprojectdb.demo.service.UserService;
 
@@ -40,10 +39,8 @@ public class UserServiceImpl implements UserService {
         return userRepository.saveAndFlush(user);
     }
 
-//    @Override
-//    public MyUserofficers saveAndFlush(MyUserofficers officers) {
-//        return userRepository.saveAndFlush(officers);
-//    }
+
+
 
     @Override
     public MyUser update(MyUser user) {

@@ -14,15 +14,16 @@ public class MyUserofficers {
 
     @Id
     @GeneratedValue
-    private Long id;
-
+    private Integer id;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user", foreignKey = @ForeignKey(name = "user_officers_my_user_id"))
+    @JoinColumn(name = "user_MyUserofficers_id", foreignKey = @ForeignKey(name = "user_MyUserofficers_id"))
     private MyUser user;
 
-    @Column (length = 500)
+
+
+    @Column ( nullable = false ,length = 500)
     private  String people_Name;
     @Column (length = 500)
     private  String people__Adres;
@@ -41,13 +42,6 @@ public class MyUserofficers {
 
 
 
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
 
     public String getPeople_Name() {
         return people_Name;
@@ -112,6 +106,7 @@ public class MyUserofficers {
     public void setPeople_Occupation(String people_Occupation) {
         this.people_Occupation = people_Occupation;
     }
+
 
 
 

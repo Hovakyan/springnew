@@ -3,43 +3,47 @@ package springprojectdb.demo.companyOfficers;
 import com.google.common.collect.Lists;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
-import springprojectdb.demo.entity.MyUser;
-import springprojectdb.demo.entity.MyUserofficers;
+import springprojectdb.demo.entity.MyCompany;
+import springprojectdb.demo.entity.MyOfficers;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
-import springprojectdb.demo.entity.MyUserofficers;
-import springprojectdb.demo.service.UserService;
+import springprojectdb.demo.service.OfficerServise;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Optional;
 
 
-public class Officers  {
+public class Officers {
 
 
- public static void officerBackup(String kay , UserService userService) throws IOException, IOException {
-
+    public static void officerBackup(String kay, OfficerServise officerServise, MyCompany myCompany) {
 
         String url = "https://beta.companieshouse.gov.uk/company/" + kay + "/officers";
-        Document doc = Jsoup.connect(url).get();
+        Document doc = null;
+        try {
+            doc = Jsoup.connect(url).get();
+        } catch (IOException e) {
+            System.out.println("This page cannot be found");
+           return;
+        }
+
         Element elcount = doc.getElementById("company-appointments");
 
         int count = 0;
         try {
-
             count = Integer.parseInt(elcount.text().substring(0, 1).trim());
 
         } catch (Error | Exception e) {
 
         }
 
-      final   MyUser myUser = new MyUser();
-
         for (int i = 1; i <= count; i++) {
 
-            MyUserofficers officers = new MyUserofficers();
+            Element namechack = doc.getElementById("officer-name-" + i);
+            Optional<MyOfficers> optionalofficer = officerServise.findBypeopleName(namechack.text());
+            MyOfficers officers = optionalofficer.isPresent() ? optionalofficer.get() : new MyOfficers();
+
+
 
             try {
                 Element name = doc.getElementById("officer-name-" + i);
@@ -92,9 +96,8 @@ public class Officers  {
 
             }
 
-          myUser.setOfficerslist(Lists.newArrayList(officers));
-            userService.save(myUser);
+            myCompany.setOfficerslist(Lists.newArrayList(officers));
+            officerServise.save(officers);
         }
-
- }
+    }
 }

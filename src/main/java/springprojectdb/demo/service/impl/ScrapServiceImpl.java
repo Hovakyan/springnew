@@ -40,13 +40,14 @@ public class ScrapServiceImpl implements ScrapService {
 
         String url1 = "https://beta.companieshouse.gov.uk/company/" + kay;
         Document doc = null;
-       Thread.sleep(500);
+        Thread.sleep(500);
         try {
             doc = Jsoup.connect(url1).get();
         } catch (IOException e) {
             System.out.println("This page cannot be found kay " + kay);
             return;
         }
+
         Elements elements3 = doc.getAllElements();
 
         if (!companyService.findBycompanyName(elements3.get(0).getElementById("company-name").text()).isPresent()) {
@@ -60,19 +61,15 @@ public class ScrapServiceImpl implements ScrapService {
 
             Thread.sleep(500);
             System.out.println("officers processing kay " + kay);
-            officerScraper.scrap(url1, myOfficersList,kay);
+            officerScraper.scrap(url1, myOfficersList, kay);
             myOfficersList.forEach(myOfficers -> {
                 myOfficers.setMyCompany(companyFromDb);
                 officerServise.save(myOfficers);
             });
             System.out.println("officers processing success");
 
-
-
         } else {
             System.out.println("Company row is repede kay = " + kay);
         }
-
-
     }
 }

@@ -26,9 +26,8 @@ public class CompanyApplicationEventListener {
         try {
             scanner = new Scanner(bufferedReader);
             while (scanner.hasNextLine()) {
-
                 String x = scanner.nextLine();
-               Thread.sleep(1000);
+                Thread.sleep(1000);
                 scrapService.scrap(x);
             }
         } catch (Exception e) {

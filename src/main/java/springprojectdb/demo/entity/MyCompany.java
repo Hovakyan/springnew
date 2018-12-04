@@ -15,7 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 public class MyCompany {
 
-
     @Id
     @GeneratedValue
 
@@ -45,10 +44,8 @@ public class MyCompany {
     @Column(length = 500)
     private  String company_Previous_names;
 
-
-
-    @OneToMany(mappedBy = "myCompany", cascade = CascadeType.ALL, orphanRemoval = true)
-    private    List<MyOfficers> officerslist;
+    @OneToMany(mappedBy = "myCompany")
+    private List<MyOfficers> officerslist;
 
 
     public String getCompany_Previous_names() {

@@ -5,7 +5,7 @@ import springprojectdb.demo.entity.MyCompany;
 import java.util.List;
 import java.util.Optional;
 
-public interface Companyervice {
+public interface CompanyService {
 
     MyCompany get(Integer id);
 

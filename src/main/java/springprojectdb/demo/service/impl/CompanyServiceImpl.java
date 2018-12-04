@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import springprojectdb.demo.entity.MyCompany;
 import springprojectdb.demo.repository.CompanyRepository;
-import springprojectdb.demo.service.Companyervice;
+import springprojectdb.demo.service.CompanyService;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +15,7 @@ import static org.springframework.util.Assert.notNull;
 
 
 @Service
-public class CompanyerviceImpl implements Companyervice {
+public class CompanyServiceImpl implements CompanyService {
 
     @Autowired
     CompanyRepository companyRepository;

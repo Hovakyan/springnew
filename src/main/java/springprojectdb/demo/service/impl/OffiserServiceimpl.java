@@ -9,7 +9,7 @@ import springprojectdb.demo.service.OfficerServise;
 import java.util.Optional;
 
 @Service
-public class Offiserimpl implements OfficerServise {
+public class OffiserServiceimpl implements OfficerServise {
 
     @Autowired
     OfficerRapository officerRapository;

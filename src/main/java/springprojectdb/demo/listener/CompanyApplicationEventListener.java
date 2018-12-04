@@ -4,12 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
-//import springprojectdb.demo.companyOfficers.Company;
-import springprojectdb.demo.companyOfficers.Company;
-import springprojectdb.demo.companyOfficers.Officers;
 import springprojectdb.demo.entity.MyCompany;
-import springprojectdb.demo.service.OfficerServise;
-import springprojectdb.demo.service.Companyervice;
+import springprojectdb.demo.service.ScrapService;
+import springprojectdb.demo.service.impl.ScrapServiceImpl;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -18,13 +15,10 @@ import java.util.Scanner;
 
 @Component
 public class CompanyApplicationEventListener {
-    final MyCompany myCompany = new MyCompany();
+
 
     @Autowired
-    Companyervice companyervice;
-
-    @Autowired
-    OfficerServise officerServise;
+    private ScrapService scrapService;
 
     @EventListener({ContextRefreshedEvent.class})
     public void onContextRefreshedEvent() throws FileNotFoundException {
@@ -35,10 +29,9 @@ public class CompanyApplicationEventListener {
         try {
             scanner = new Scanner(bufferedReader);
             while (scanner.hasNextLine()) {
-                String x = scanner.nextLine();
-                Company.companyBackup(x, companyervice);
-                Officers.officerBackup(x, officerServise, myCompany);
 
+                String x = scanner.nextLine();
+                scrapService.scrap(x);
             }
 
         } catch (Exception e) {

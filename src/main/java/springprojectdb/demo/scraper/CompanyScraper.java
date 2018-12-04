@@ -1,22 +1,18 @@
-package springprojectdb.demo.companyOfficers;
+package springprojectdb.demo.scraper;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import org.springframework.stereotype.Component;
 import springprojectdb.demo.entity.MyCompany;
-import springprojectdb.demo.service.Companyervice;
 
 import java.io.IOException;
-import java.util.Optional;
 
 
-public class Company extends MyCompany {
+@Component
+public class CompanyScraper {
 
-
-    public static void companyBackup(String kay, Companyervice companyervice) {
-
-        String url = "https://beta.companieshouse.gov.uk/company/" + kay;
-
+    public void scrap(String url, MyCompany myCompany){
         Document doc = null;
         try {
             doc = Jsoup.connect(url).get();
@@ -26,10 +22,6 @@ public class Company extends MyCompany {
         }
 
         Elements elements3 = doc.getAllElements();
-
-        Optional<MyCompany> optionalUser = companyervice.findBycompanyName(elements3.get(0).getElementById("company-name").text());
-        MyCompany myCompany = optionalUser.isPresent() ? optionalUser.get() : new MyCompany();
-
 
         myCompany.setCompanyName(elements3.get(0).getElementById("company-name").text());
         myCompany.setCompany_ID(elements3.get(0).getElementById("company-number").text());
@@ -51,8 +43,6 @@ public class Company extends MyCompany {
         } catch (Exception | Error e) {
 
         }
-
-        companyervice.save(myCompany);
 
 
     }

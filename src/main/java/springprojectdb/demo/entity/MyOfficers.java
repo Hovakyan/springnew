@@ -16,31 +16,37 @@ public class MyOfficers {
     @GeneratedValue
     private Integer id;
 
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "myCompany_officerslist_id", foreignKey = @ForeignKey(name = "myCompany_officerslist_my_officers"))
 
     private MyCompany myCompany;
 
-
-
     @Column ( nullable = false ,length = 500)
     private  String peopleName;
+
     @Column (length = 500)
     private  String people__Adres;
+
     @Column(length = 500)
     private  String people_Role;
+
     @Column(length = 500)
     private  String people_Date_of_birth;
+
     @Column(length = 500)
     private  String people_Appointed_on;
+
     @Column(length = 500)
     private  String people_Nationality;
+
     @Column(length = 500)
     private  String people_Country_of_residence;
+
     @Column(length = 500)
     private  String people_Occupation;
 
+    public void setMyCompany(MyCompany myCompany) {
+        this.myCompany = myCompany;
+    }
 
     public void setPeople_Name(String people_Name) {
         this.peopleName = people_Name;

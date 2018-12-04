@@ -20,7 +20,7 @@ public class MyCompany {
 
     private Integer id;
 
-    @Column(length = 500)
+    @Column(nullable = false ,length = 500)
     private  String companyName;
 
     @Column(length = 500)

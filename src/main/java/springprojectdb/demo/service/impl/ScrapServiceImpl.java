@@ -2,7 +2,6 @@ package springprojectdb.demo.service.impl;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,39 +35,43 @@ public class ScrapServiceImpl implements ScrapService {
 
 
     @Override
-    public void scrap(String kay) {
+    public void scrap(String kay) throws InterruptedException {
 
 
         String url1 = "https://beta.companieshouse.gov.uk/company/" + kay;
         Document doc = null;
+       Thread.sleep(500);
         try {
             doc = Jsoup.connect(url1).get();
         } catch (IOException e) {
-            System.out.println("This page cannot be found");
+            System.out.println("This page cannot be found kay " + kay);
             return;
         }
         Elements elements3 = doc.getAllElements();
-        Optional<MyCompany> optionalUser = companyService.findBycompanyName(elements3.get(0).getElementById("company-name").text());
-        MyCompany myCompany = optionalUser.isPresent() ? optionalUser.get() : new MyCompany();
 
+        if (!companyService.findBycompanyName(elements3.get(0).getElementById("company-name").text()).isPresent()) {
 
-        System.out.println(optionalUser.get());
-
+            MyCompany myCompany = new MyCompany();
             final List<MyOfficers> myOfficersList = new ArrayList<>();
-
-            System.out.println("Company  processing kay" + kay);
+            System.out.println("Company  processing kay " + kay);
             companyScraper.scrap(url1, myCompany);
             final MyCompany companyFromDb = companyService.save(myCompany);
             System.out.println("Company  processing success");
 
-
-            System.out.println("officers processing kay" + kay);
-            officerScraper.scrap(url1, myOfficersList);
+            Thread.sleep(500);
+            System.out.println("officers processing kay " + kay);
+            officerScraper.scrap(url1, myOfficersList,kay);
             myOfficersList.forEach(myOfficers -> {
-            myOfficers.setMyCompany(companyFromDb);
-            officerServise.save(myOfficers);
+                myOfficers.setMyCompany(companyFromDb);
+                officerServise.save(myOfficers);
             });
             System.out.println("officers processing success");
+
+
+
+        } else {
+            System.out.println("Company row is repede kay = " + kay);
+        }
 
 
     }

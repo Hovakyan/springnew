@@ -12,7 +12,7 @@ import java.io.IOException;
 @Component
 public class CompanyScraper {
 
-    public void scrap(String url, MyCompany myCompany){
+    public void scrap(String url, MyCompany myCompany) throws InterruptedException {
         Document doc = null;
         try {
             doc = Jsoup.connect(url).get();
@@ -20,7 +20,7 @@ public class CompanyScraper {
             System.out.println("This page cannot be found");
             return;
         }
-
+        Thread.sleep(500);
         Elements elements3 = doc.getAllElements();
 
         myCompany.setCompanyName(elements3.get(0).getElementById("company-name").text());

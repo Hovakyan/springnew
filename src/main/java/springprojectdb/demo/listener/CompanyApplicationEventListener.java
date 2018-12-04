@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
-import springprojectdb.demo.entity.MyCompany;
 import springprojectdb.demo.service.ScrapService;
-import springprojectdb.demo.service.impl.ScrapServiceImpl;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -23,17 +21,16 @@ public class CompanyApplicationEventListener {
     @EventListener({ContextRefreshedEvent.class})
     public void onContextRefreshedEvent() throws FileNotFoundException {
 
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("C:/info/info1.txt"));
+        BufferedReader bufferedReader = new BufferedReader(new FileReader("C:/info/info11.txt"));
         Scanner scanner = null;
-
         try {
             scanner = new Scanner(bufferedReader);
             while (scanner.hasNextLine()) {
 
                 String x = scanner.nextLine();
+               Thread.sleep(1000);
                 scrapService.scrap(x);
             }
-
         } catch (Exception e) {
 
         }

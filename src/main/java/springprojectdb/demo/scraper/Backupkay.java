@@ -26,7 +26,7 @@ public class Backupkay {
                     System.out.println("search by " + i + "   page " + j);
                     Elements elementsurl = doc.getElementsByAttributeValue("class", "type-company");
 
-                    elementsurl.forEach(elementt -> {
+                        elementsurl.forEach(elementt -> {
                         Element element9 = elementt.child(0);
                         String url1 = element9.child(0).attr("href");
 

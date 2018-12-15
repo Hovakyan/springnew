@@ -15,14 +15,14 @@ public class Backupkay {
         int x = 0;
 
         //todo search company by numbers,then you can change by a-Z  (1-90000 to a-Z)
-        for (int i = 1; i <= 1; i++) {
+        for (int i = 1; i <= 90000; i++) {
 
         // todo this search by page  ,maximum page 52
             for (int j = 0; j <= 52; j++) {
 
                 try {
                     Document doc = Jsoup.connect("https://beta.companieshouse.gov.uk/search/companies?q=" + i + "&page=" + j).get();
-//                    Thread.sleep(5000);
+                    Thread.sleep(4000);
                     System.out.println("search by " + i + "   page " + j);
                     Elements elementsurl = doc.getElementsByAttributeValue("class", "type-company");
 
@@ -31,7 +31,7 @@ public class Backupkay {
                         String url1 = element9.child(0).attr("href");
 
                         try {
-                            Thread.sleep(100);
+                            Thread.sleep(1000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }

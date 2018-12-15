@@ -13,8 +13,6 @@ public interface CompanyService {
 
     MyCompany saveAndFlush(MyCompany user);
 
-
-
     MyCompany update(MyCompany user);
 
     Optional<MyCompany> findBycompanyName(String companyName);

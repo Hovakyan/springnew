@@ -20,6 +20,7 @@ public class CompanyServiceImpl implements CompanyService {
     @Autowired
     CompanyRepository companyRepository;
 
+
     @Override
     public MyCompany get(Integer id) {
         notNull(id, "id can not be null");

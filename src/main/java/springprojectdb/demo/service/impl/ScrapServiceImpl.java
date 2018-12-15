@@ -11,12 +11,11 @@ import springprojectdb.demo.scraper.CompanyScraper;
 import springprojectdb.demo.scraper.OfficerScraper;
 import springprojectdb.demo.service.ScrapService;
 import springprojectdb.demo.service.CompanyService;
-import springprojectdb.demo.service.OfficerServise;
+import springprojectdb.demo.service.OfficerService;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ScrapServiceImpl implements ScrapService {
@@ -25,14 +24,13 @@ public class ScrapServiceImpl implements ScrapService {
     private CompanyService companyService;
 
     @Autowired
-    private OfficerServise officerServise;
+    private OfficerService officerService;
 
     @Autowired
     private CompanyScraper companyScraper;
 
     @Autowired
     private OfficerScraper officerScraper;
-
 
     @Override
     public void scrap(String kay) throws InterruptedException {
@@ -64,7 +62,7 @@ public class ScrapServiceImpl implements ScrapService {
             officerScraper.scrap(url1, myOfficersList, kay);
             myOfficersList.forEach(myOfficers -> {
                 myOfficers.setMyCompany(companyFromDb);
-                officerServise.save(myOfficers);
+                officerService.save(myOfficers);
             });
             System.out.println("officers processing success");
 

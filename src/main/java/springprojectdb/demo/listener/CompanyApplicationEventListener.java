@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
+import springprojectdb.demo.scraper.Backupkay;
 import springprojectdb.demo.service.ScrapService;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 @Component
@@ -18,10 +20,14 @@ public class CompanyApplicationEventListener {
     @Autowired
     private ScrapService scrapService;
 
-    @EventListener({ContextRefreshedEvent.class})
-    public void onContextRefreshedEvent() throws FileNotFoundException {
+    @Autowired
+    Backupkay backupkay;
 
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("C:/info/info11.txt"));
+    @EventListener({ContextRefreshedEvent.class})
+    public void onContextRefreshedEvent() throws IOException, InterruptedException {
+
+        backupkay.info();
+        BufferedReader bufferedReader = new BufferedReader(new FileReader("C:/info.txt"));
         Scanner scanner = null;
         try {
             scanner = new Scanner(bufferedReader);

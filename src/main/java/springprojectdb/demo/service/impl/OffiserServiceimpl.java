@@ -4,12 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import springprojectdb.demo.entity.MyOfficers;
 import springprojectdb.demo.repository.OfficerRapository;
-import springprojectdb.demo.service.OfficerServise;
+import springprojectdb.demo.service.OfficerService;
 
 import java.util.Optional;
 
 @Service
-public class OffiserServiceimpl implements OfficerServise {
+public class OffiserServiceimpl implements OfficerService {
 
     @Autowired
     OfficerRapository officerRapository;

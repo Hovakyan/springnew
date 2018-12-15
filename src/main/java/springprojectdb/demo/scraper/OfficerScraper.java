@@ -7,17 +7,16 @@ import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import springprojectdb.demo.entity.MyOfficers;
-import springprojectdb.demo.service.OfficerServise;
+import springprojectdb.demo.service.OfficerService;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class OfficerScraper {
 
     @Autowired
-    OfficerServise officerServise;
+    OfficerService officerService;
 
     public void scrap(String url1, List<MyOfficers> myOfficers,String kay) {
 

@@ -4,7 +4,7 @@ import springprojectdb.demo.entity.MyOfficers;
 
 import java.util.Optional;
 
-public interface OfficerServise {
+public interface OfficerService {
     MyOfficers save(MyOfficers user);
     Optional<MyOfficers> findBypeopleName(String name);
 

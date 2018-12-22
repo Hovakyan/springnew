@@ -1,44 +1,40 @@
 package springprojectdb.demo.listener;
 
+import lombok.Getter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
-import springprojectdb.demo.scraper.Backupkay;
+import springprojectdb.demo.service.BackupkayService;
 import springprojectdb.demo.service.ScrapService;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Component
 public class CompanyApplicationEventListener {
+
 
 
     @Autowired
     private ScrapService scrapService;
 
     @Autowired
-    Backupkay backupkay;
+    BackupkayService backupkayService;
+
+
 
     @EventListener({ContextRefreshedEvent.class})
-    public void onContextRefreshedEvent() throws IOException, InterruptedException {
+    public void onContextRefreshedEvent()  {
 
-        backupkay.info();
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("C:/info.txt"));
-        Scanner scanner = null;
-        try {
-            scanner = new Scanner(bufferedReader);
-            while (scanner.hasNextLine()) {
-                String x = scanner.nextLine();
-                Thread.sleep(1000);
-                scrapService.scrap(x);
-            }
-        } catch (Exception e) {
+        ExecutorService executorService = Executors.newFixedThreadPool(2);
+        executorService.submit(backupkayService);
+        executorService.submit(scrapService);
+        executorService.shutdown ();
 
-        }
 
     }
 }

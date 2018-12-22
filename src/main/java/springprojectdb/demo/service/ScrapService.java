@@ -1,7 +1,13 @@
 package springprojectdb.demo.service;
 
-public interface ScrapService {
+import java.util.List;
 
-    void scrap(String url) throws InterruptedException;
+public interface ScrapService  extends Runnable{
+    @Override
+    default void run() {
+
+    }
+
+    //    void scrap(List<String> keylist) throws InterruptedException;
 
 }

@@ -1,7 +1,6 @@
 package springprojectdb.demo.listener;
 
 import lombok.Getter;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;

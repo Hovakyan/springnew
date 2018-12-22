@@ -20,7 +20,7 @@ public class BackupkayServiceimpl implements BackupkayService {
         int x = 0;
 
         //todo search company by numbers,then you can change by a-Z  (1-90000 to a-Z)
-        for (int i = 1; i <= 100; i++) {
+        for (int i = 0; i <= 90000; i++) {
 
             // todo this search by page  ,maximum page 52
             for (int j = 0; j <= 52; j++) {
